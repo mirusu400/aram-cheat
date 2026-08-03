@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Check every catalog in this repository against the version 1 schema.
+"""Check every catalog in this repository and regenerate the browse indexes.
 
 The emulator's parser rejects unknown fields and unmet constraints, so a
 document that fails here would also fail in the product. Run it before opening
-a pull request; CI runs the same checks.
+a pull request; CI runs the same checks with --check, which fails when a
+generated index is out of date.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import pathlib
 import re
@@ -16,15 +18,27 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TITLES = ROOT / "titles"
 INDEX = ROOT / "index.json"
+ALIASES = ROOT / "aliases.json"
 
-CATALOG_VERSION = 1
+CATALOG_VERSION = 2
 MAX_PATCH_BYTES = 1 << 20
 
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 CHEAT_ID = re.compile(r"^[a-z0-9][a-z0-9._-]{0,63}$")
 HEX_BYTES = re.compile(r"^(?:[0-9a-f]{2})+$")
 
-TITLE_FIELDS = {"sha256", "name", "carrier", "format", "profile_id"}
+TITLE_FIELDS = {
+    "image_sha256",
+    "file_sha256",
+    "name",
+    "carrier",
+    "format",
+    "profile_id",
+    "aid",
+    "pid",
+    "version",
+    "vendor",
+}
 CHEAT_FIELDS = {
     "id",
     "name",
@@ -37,7 +51,9 @@ CHEAT_FIELDS = {
     "patches",
 }
 PATCH_FIELDS = {"address", "value", "expected", "note"}
-INDEX_ENTRY_FIELDS = {"sha256", "name", "carrier", "format", "cheats"}
+
+# Fields copied from a catalog title into the browse index.
+INDEX_TITLE_FIELDS = ("name", "carrier", "format", "aid", "pid", "version", "vendor")
 
 
 class Failures(list):
@@ -147,11 +163,25 @@ def validate_catalog(path: pathlib.Path, failures: Failures) -> dict | None:
         failures.append(f"{where}: title must be an object")
         return None
     unknown_fields(f"{where} title", title, TITLE_FIELDS, failures)
-    sha256 = title.get("sha256")
-    if not isinstance(sha256, str) or not SHA256.match(sha256):
-        failures.append(f"{where}: title sha256 must be 64 lowercase hex characters")
-    elif path.stem != sha256:
-        failures.append(f"{where}: file name does not match title sha256 {sha256}")
+
+    image = title.get("image_sha256")
+    if not isinstance(image, str) or not SHA256.match(image):
+        failures.append(f"{where}: image_sha256 must be 64 lowercase hex characters")
+    elif path.stem != image:
+        failures.append(f"{where}: file name does not match image_sha256 {image}")
+
+    files = title.get("file_sha256", [])
+    if not isinstance(files, list):
+        failures.append(f"{where}: file_sha256 must be an array")
+    else:
+        for index, value in enumerate(files):
+            if not isinstance(value, str) or not SHA256.match(value):
+                failures.append(
+                    f"{where}: file_sha256[{index}] must be 64 lowercase hex characters"
+                )
+    for field in ("name", "carrier", "format", "profile_id", "aid", "pid", "version", "vendor"):
+        if field in title and not isinstance(title[field], str):
+            failures.append(f"{where} title: {field} must be a string")
 
     cheats = document.get("cheats")
     if not isinstance(cheats, list) or not cheats:
@@ -163,53 +193,101 @@ def validate_catalog(path: pathlib.Path, failures: Failures) -> dict | None:
     return document
 
 
-def validate_index(catalogs: dict, failures: Failures) -> None:
-    where = INDEX.relative_to(ROOT).as_posix()
-    try:
-        document = json.loads(INDEX.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as error:
-        failures.append(f"{where}: {error}")
-        return
-    if not isinstance(document, dict) or document.get("version") != CATALOG_VERSION:
-        failures.append(f"{where}: version must be {CATALOG_VERSION}")
-        return
-    unknown_fields(where, document, {"version", "titles"}, failures)
-    titles = document.get("titles")
-    if not isinstance(titles, list):
-        failures.append(f"{where}: titles must be an array")
-        return
+def build_index(catalogs: dict) -> dict:
+    titles = []
+    for image in sorted(catalogs):
+        title = catalogs[image].get("title", {})
+        entry = {"image_sha256": image}
+        for field in INDEX_TITLE_FIELDS:
+            if title.get(field):
+                entry[field] = title[field]
+        entry["file_sha256"] = list(title.get("file_sha256", []))
+        entry["cheats"] = len(catalogs[image].get("cheats", []))
+        titles.append(entry)
+    return {"version": CATALOG_VERSION, "titles": titles}
 
-    listed = set()
-    for index, entry in enumerate(titles):
-        entry_where = f"{where} entry {index}"
-        if not isinstance(entry, dict):
-            failures.append(f"{entry_where}: must be an object")
-            continue
-        unknown_fields(entry_where, entry, INDEX_ENTRY_FIELDS, failures)
-        sha256 = entry.get("sha256")
-        if not isinstance(sha256, str) or not SHA256.match(sha256):
-            failures.append(f"{entry_where}: sha256 must be 64 lowercase hex characters")
-            continue
-        listed.add(sha256)
-        catalog = catalogs.get(sha256)
-        if catalog is None:
-            failures.append(f"{entry_where}: no titles/{sha256}.json exists")
-            continue
-        count = entry.get("cheats")
-        published = len(catalog.get("cheats", []))
-        if count != published:
-            failures.append(
-                f"{entry_where}: cheats says {count!r} but the catalog publishes {published}"
-            )
-        for field in ("name", "carrier", "format"):
-            if field in entry and entry[field] != catalog.get("title", {}).get(field):
-                failures.append(f"{entry_where}: {field} disagrees with the catalog")
 
-    for sha256 in sorted(set(catalogs) - listed):
-        failures.append(f"{where}: titles/{sha256}.json is not listed")
+def descriptor_alias(title: dict) -> str | None:
+    """A readable key from the carrier descriptor.
+
+    Carrier identifiers are not unique: across a 280-package corpus one AID
+    covers as many as twelve unrelated titles. Aliases exist so a person can
+    find an entry, never so the product can authorize a patch, and a key that
+    reaches more than one image is dropped from the map rather than guessed at.
+    """
+    carrier = (title.get("carrier") or "").strip().lower()
+    aid = (title.get("aid") or "").strip().lower()
+    pid = (title.get("pid") or "").strip().lower()
+    version = (title.get("version") or "").strip().lower()
+    if not carrier or not aid:
+        return None
+    parts = [carrier, aid]
+    if pid:
+        parts.append(pid)
+    if version:
+        parts.append(version)
+    return "-".join(parts)
+
+
+def build_aliases(catalogs: dict, failures: Failures) -> dict:
+    by_file: dict[str, str] = {}
+    by_descriptor: dict[str, set] = {}
+    for image, catalog in sorted(catalogs.items()):
+        title = catalog.get("title", {})
+        for file_hash in title.get("file_sha256", []):
+            if by_file.get(file_hash, image) != image:
+                failures.append(
+                    f"file_sha256 {file_hash} is claimed by two images: "
+                    f"{by_file[file_hash]} and {image}"
+                )
+                continue
+            by_file[file_hash] = image
+        alias = descriptor_alias(title)
+        if alias:
+            by_descriptor.setdefault(alias, set()).add(image)
+
+    ambiguous = sorted(key for key, images in by_descriptor.items() if len(images) > 1)
+    for key in ambiguous:
+        print(
+            f"note: descriptor alias {key!r} covers "
+            f"{len(by_descriptor[key])} images and is omitted",
+            file=sys.stderr,
+        )
+    return {
+        "version": CATALOG_VERSION,
+        "note": (
+            "Lookup aid for humans and tooling. The product resolves catalogs by "
+            "image_sha256; these keys are not authoritative."
+        ),
+        "by_file_sha256": dict(sorted(by_file.items())),
+        "by_descriptor": {
+            key: sorted(images)[0]
+            for key, images in sorted(by_descriptor.items())
+            if len(images) == 1
+        },
+    }
+
+
+def write_generated(path: pathlib.Path, document: dict, check: bool, failures: Failures) -> None:
+    rendered = json.dumps(document, indent=2, ensure_ascii=False) + "\n"
+    where = path.relative_to(ROOT).as_posix()
+    if check:
+        current = path.read_text(encoding="utf-8") if path.exists() else ""
+        if current != rendered:
+            failures.append(f"{where} is out of date; run python tools/validate.py")
+        return
+    path.write_text(rendered, encoding="utf-8")
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="fail instead of rewriting index.json and aliases.json",
+    )
+    arguments = parser.parse_args()
+
     failures = Failures()
     catalogs = {}
     if TITLES.is_dir():
@@ -217,10 +295,9 @@ def main() -> int:
             document = validate_catalog(path, failures)
             if document is not None:
                 catalogs[path.stem] = document
-    if INDEX.exists():
-        validate_index(catalogs, failures)
-    else:
-        failures.append("index.json is missing")
+
+    write_generated(INDEX, build_index(catalogs), arguments.check, failures)
+    write_generated(ALIASES, build_aliases(catalogs, failures), arguments.check, failures)
 
     if failures:
         for failure in failures:

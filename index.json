@@ -1,11 +1,18 @@
 {
-  "version": 1,
+  "version": 2,
   "titles": [
     {
-      "sha256": "3cc7a9b4cb15818cdd5a66f7e520c7b9b36f1df8d2df096aafa961b1cb2b682c",
+      "image_sha256": "c1d814a9325e5285c547d1d9d3906e0bee45bdfe576e705c9a727747d4680b49",
       "name": "제노니아 1",
       "carrier": "lgt",
       "format": "raptor-wipi-c",
+      "aid": "00027BAA",
+      "pid": "PD116132",
+      "version": "01.00.06",
+      "vendor": "게임빌",
+      "file_sha256": [
+        "3cc7a9b4cb15818cdd5a66f7e520c7b9b36f1df8d2df096aafa961b1cb2b682c"
+      ],
       "cheats": 1
     }
   ]
