@@ -1,4 +1,12 @@
 {
   "version": 1,
-  "titles": []
+  "titles": [
+    {
+      "sha256": "3cc7a9b4cb15818cdd5a66f7e520c7b9b36f1df8d2df096aafa961b1cb2b682c",
+      "name": "제노니아 1",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "cheats": 1
+    }
+  ]
 }

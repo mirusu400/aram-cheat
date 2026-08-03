@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "title": {
+    "sha256": "3cc7a9b4cb15818cdd5a66f7e520c7b9b36f1df8d2df096aafa961b1cb2b682c",
+    "name": "제노니아 1",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "Starts the game without the Gamevil authentication server, which no longer answers.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-emu/issues/4",
+      "restore_on_disable": true,
+      "patches": [
+        {
+          "address": "0x00056710",
+          "value": "10207047",
+          "expected": "30b5041c",
+          "note": "return 0x10, the already-authenticated result, from the authentication check"
+        }
+      ]
+    }
+  ]
+}
