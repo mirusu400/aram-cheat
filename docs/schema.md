@@ -1,6 +1,6 @@
 # Catalog schema
 
-Version 2. The emulator's parser lives in `aram-core/cheat/catalog.go` and
+Version 3. The emulator's parser lives in `aram-core/cheat/catalog.go` and
 rejects unknown fields, so a document that a newer schema produced fails
 loudly instead of losing data.
 
@@ -12,7 +12,7 @@ file name.
 
 ```json
 {
-  "version": 2,
+  "version": 3,
   "title": {
     "image_sha256": "c1d814a9325e5285c547d1d9d3906e0bee45bdfe576e705c9a727747d4680b49",
     "file_sha256": [
@@ -36,6 +36,7 @@ file name.
       "author": "aram",
       "reference": "https://github.com/mirusu400/aram-emu/issues/4",
       "restore_on_disable": true,
+      "default_enabled": true,
       "patches": [
         {
           "address": "0x00056710",
@@ -92,6 +93,7 @@ code.
 | `reference` | no | Issue or write-up URL. |
 | `freeze` | no | Rewrite the patch after every emulated frame. Use for values the game overwrites, not for code. |
 | `restore_on_disable` | no | Put the original bytes back when the cheat is turned off. Set it for code patches so a cheat can be toggled. |
+| `default_enabled` | no | Apply this cheat as soon as the title loads. Requires `restore_on_disable`. |
 | `patches` | yes | At least one patch, all applied as one unit. |
 
 ### patches[]
@@ -102,6 +104,22 @@ code.
 | `value` | yes | Replacement bytes, lowercase hexadecimal, in guest order. |
 | `expected` | yes | The original bytes at that address, same length as `value`. |
 | `note` | no | Why this patch exists. |
+
+## Defaults
+
+`default_enabled` is for a repair a title cannot run without — a check against
+a server that stopped answering, a carrier prompt with nothing behind it. It is
+not for cheats that change how a game plays; those stay off until someone asks
+for them.
+
+A person's choice always wins. ARAM records each cheat they turn on or off for
+that title and applies the catalog default only to the ones they never touched,
+so turning a default off keeps it off, and a cheat added to a catalog later
+still arrives enabled.
+
+A default-on entry must set `restore_on_disable`. Otherwise turning off a cheat
+nobody asked for would leave its bytes behind, and the title could not be run
+unmodified again.
 
 ## Rules
 

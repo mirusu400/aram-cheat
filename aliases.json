@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "note": "Lookup aid for humans and tooling. The product resolves catalogs by image_sha256; these keys are not authoritative.",
   "by_file_sha256": {
     "3cc7a9b4cb15818cdd5a66f7e520c7b9b36f1df8d2df096aafa961b1cb2b682c": "c1d814a9325e5285c547d1d9d3906e0bee45bdfe576e705c9a727747d4680b49"

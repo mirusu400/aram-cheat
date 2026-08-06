@@ -20,7 +20,7 @@ TITLES = ROOT / "titles"
 INDEX = ROOT / "index.json"
 ALIASES = ROOT / "aliases.json"
 
-CATALOG_VERSION = 2
+CATALOG_VERSION = 3
 MAX_PATCH_BYTES = 1 << 20
 
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -48,6 +48,7 @@ CHEAT_FIELDS = {
     "reference",
     "freeze",
     "restore_on_disable",
+    "default_enabled",
     "patches",
 }
 PATCH_FIELDS = {"address", "value", "expected", "note"}
@@ -134,9 +135,14 @@ def validate_cheat(where: str, cheat, seen: set, failures: Failures) -> None:
     for field in ("description", "category", "author", "reference"):
         if field in cheat and not isinstance(cheat[field], str):
             failures.append(f"{where}: {field} must be a string")
-    for field in ("freeze", "restore_on_disable"):
+    for field in ("freeze", "restore_on_disable", "default_enabled"):
         if field in cheat and not isinstance(cheat[field], bool):
             failures.append(f"{where}: {field} must be true or false")
+    if cheat.get("default_enabled") and not cheat.get("restore_on_disable"):
+        failures.append(
+            f"{where}: default_enabled requires restore_on_disable, or turning "
+            "the cheat off could not undo it"
+        )
     patches = cheat.get("patches")
     if not isinstance(patches, list) or not patches:
         failures.append(f"{where}: patches must be a non-empty array")
@@ -202,7 +208,11 @@ def build_index(catalogs: dict) -> dict:
             if title.get(field):
                 entry[field] = title[field]
         entry["file_sha256"] = list(title.get("file_sha256", []))
-        entry["cheats"] = len(catalogs[image].get("cheats", []))
+        cheats = catalogs[image].get("cheats", [])
+        entry["cheats"] = len(cheats)
+        defaults = [c["id"] for c in cheats if c.get("default_enabled")]
+        if defaults:
+            entry["default_enabled"] = defaults
         titles.append(entry)
     return {"version": CATALOG_VERSION, "titles": titles}
 

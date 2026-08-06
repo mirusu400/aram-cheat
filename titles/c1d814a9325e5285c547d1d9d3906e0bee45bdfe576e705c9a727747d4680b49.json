@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "title": {
     "image_sha256": "c1d814a9325e5285c547d1d9d3906e0bee45bdfe576e705c9a727747d4680b49",
     "file_sha256": [
@@ -23,6 +23,7 @@
       "author": "aram",
       "reference": "https://github.com/mirusu400/aram-emu/issues/4",
       "restore_on_disable": true,
+      "default_enabled": true,
       "patches": [
         {
           "address": "0x00056710",
