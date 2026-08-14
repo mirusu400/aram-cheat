@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "de02f734b46595c96a10e0bb01e8ade2723ee410ad7ed12a57643964c7decf87",
+    "file_sha256": [
+      "4b8c8f5ff7d61e1964eb8784d60997bcf977050a9df96cf853a9643109fec7ce"
+    ],
+    "name": "드래곤로드",
+    "carrier": "ktf",
+    "format": "ktf-wipi",
+    "profile_id": "wipi-1.2.1/ktf/generic",
+    "aid": "01038088",
+    "pid": "PD005152",
+    "vendor": "NEXON MOBILE"
+  },
+  "cheats": [
+    {
+      "id": "unlock-frame-rate",
+      "name": "Speed up (relax frame limiter)",
+      "description": "Raises the ~4 fps cap. The game paces itself with a frame limiter that targets a 500 ms period (about 4 fps); this lowers the target to 100 ms (about 20 fps) so the game runs roughly 5x faster and smoother.",
+      "category": "tweak",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-core/issues/35",
+      "restore_on_disable": true,
+      "default_enabled": false,
+      "patches": [
+        {
+          "address": "0x00106a9a",
+          "value": "6423",
+          "expected": "e36f",
+          "note": "frame-limiter re-arm: replace `ldr r3,[r4,#0x7c]` (load the 500 ms target period) with `movs r3,#100`, so timeout = 100 - elapsed instead of 500 - elapsed. Tune the target by changing the first byte: 0x64=100ms/~20fps, 0xa6=166ms/~12fps, 0xfa=250ms/~8fps."
+        }
+      ]
+    }
+  ]
+}

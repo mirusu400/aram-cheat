@@ -17,6 +17,19 @@
       "default_enabled": [
         "skip-server-authentication"
       ]
+    },
+    {
+      "image_sha256": "de02f734b46595c96a10e0bb01e8ade2723ee410ad7ed12a57643964c7decf87",
+      "name": "드래곤로드",
+      "carrier": "ktf",
+      "format": "ktf-wipi",
+      "aid": "01038088",
+      "pid": "PD005152",
+      "vendor": "NEXON MOBILE",
+      "file_sha256": [
+        "4b8c8f5ff7d61e1964eb8784d60997bcf977050a9df96cf853a9643109fec7ce"
+      ],
+      "cheats": 1
     }
   ]
 }
