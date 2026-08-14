@@ -16,8 +16,8 @@
   "cheats": [
     {
       "id": "unlock-frame-rate",
-      "name": "Speed up (relax frame limiter)",
-      "description": "Raises the ~4 fps cap. The game paces itself with a frame limiter that targets a 500 ms period (about 4 fps); this lowers the target to 100 ms (about 20 fps) so the game runs roughly 5x faster and smoother.",
+      "name": "Speed up (force fast frame rate)",
+      "description": "The game ships with a 10-step in-game speed setting (환경설정 > 속도설정) whose periods are 500/160/145/130/110/100/90/70/50/30 ms, but a fresh save defaults to the slowest step (500 ms, ~4 fps), which is why it feels sluggish. This forces the frame period to 100 ms (~20 fps) regardless of the setting. To use the game's own faster steps instead, leave this off and raise 속도설정 in-game.",
       "category": "tweak",
       "author": "aram",
       "reference": "https://github.com/mirusu400/aram-core/issues/35",
@@ -28,7 +28,7 @@
           "address": "0x00106a9a",
           "value": "6423",
           "expected": "e36f",
-          "note": "frame-limiter re-arm: replace `ldr r3,[r4,#0x7c]` (load the 500 ms target period) with `movs r3,#100`, so timeout = 100 - elapsed instead of 500 - elapsed. Tune the target by changing the first byte: 0x64=100ms/~20fps, 0xa6=166ms/~12fps, 0xfa=250ms/~8fps."
+          "note": "frame-limiter re-arm at 0x00106a8c computes timeout = period - elapsed, where the period is the speed-setting value in timerObj[0x7c]. Replace `ldr r3,[r4,#0x7c]` (load that period) with `movs r3,#100` so the period is always 100 ms. Tune the first byte for a different cap: 0x64=100ms/~20fps, 0x50=80ms/~25fps, 0x1e=30ms/~67fps."
         }
       ]
     }
