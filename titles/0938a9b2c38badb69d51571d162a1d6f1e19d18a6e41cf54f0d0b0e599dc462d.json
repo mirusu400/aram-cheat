@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "0938a9b2c38badb69d51571d162a1d6f1e19d18a6e41cf54f0d0b0e599dc462d",
+    "file_sha256": [
+      "4fdbd64c9fbdfbf6d335847a01054dea5a2feb3efdb2a1e6aa5b288d77fda5de"
+    ],
+    "name": "정통맞고 2009",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002A87E",
+    "pid": "PD128056",
+    "version": "01.00.03",
+    "vendor": "게임빌"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "Starts the game without the Gamevil authentication server, which no longer answers.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x000397bc",
+          "value": "10207047",
+          "expected": "30b5051c",
+          "note": "return 0x10, the already-authenticated result, from the authentication check"
+        }
+      ]
+    }
+  ]
+}

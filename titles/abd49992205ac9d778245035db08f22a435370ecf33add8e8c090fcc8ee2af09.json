@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "abd49992205ac9d778245035db08f22a435370ecf33add8e8c090fcc8ee2af09",
+    "file_sha256": [
+      "c9b287e3edcf5647e530b706723c720f6210629c8369067bc5f3d49599c406de"
+    ],
+    "name": "2010 슈퍼사커",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002D8A6",
+    "pid": "PD140600",
+    "version": "01.00.02",
+    "vendor": "게임빌"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "Starts the game without the Gamevil authentication server, which no longer answers.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00082934",
+          "value": "10207047",
+          "expected": "30b5051c",
+          "note": "return 0x10, the already-authenticated result, from the authentication check"
+        }
+      ]
+    }
+  ]
+}

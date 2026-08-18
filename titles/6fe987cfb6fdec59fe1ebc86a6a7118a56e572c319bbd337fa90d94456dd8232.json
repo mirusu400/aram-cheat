@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "6fe987cfb6fdec59fe1ebc86a6a7118a56e572c319bbd337fa90d94456dd8232",
+    "file_sha256": [
+      "601556233e719a97860d38f6d413673c2996b1a7010438504663c98b86ec776c"
+    ],
+    "name": "제노니아 2",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002C004",
+    "pid": "PD134155",
+    "version": "01.00.01",
+    "vendor": "게임빌"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "Starts the game without the Gamevil authentication server, which no longer answers.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x000790f8",
+          "value": "10207047",
+          "expected": "30b5051c",
+          "note": "return 0x10, the already-authenticated result, from the authentication check"
+        }
+      ]
+    }
+  ]
+}

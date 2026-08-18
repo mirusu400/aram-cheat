@@ -2,6 +2,57 @@
   "version": 3,
   "titles": [
     {
+      "image_sha256": "0938a9b2c38badb69d51571d162a1d6f1e19d18a6e41cf54f0d0b0e599dc462d",
+      "name": "정통맞고 2009",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002A87E",
+      "pid": "PD128056",
+      "version": "01.00.03",
+      "vendor": "게임빌",
+      "file_sha256": [
+        "4fdbd64c9fbdfbf6d335847a01054dea5a2feb3efdb2a1e6aa5b288d77fda5de"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
+      "image_sha256": "6fe987cfb6fdec59fe1ebc86a6a7118a56e572c319bbd337fa90d94456dd8232",
+      "name": "제노니아 2",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002C004",
+      "pid": "PD134155",
+      "version": "01.00.01",
+      "vendor": "게임빌",
+      "file_sha256": [
+        "601556233e719a97860d38f6d413673c2996b1a7010438504663c98b86ec776c"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
+      "image_sha256": "abd49992205ac9d778245035db08f22a435370ecf33add8e8c090fcc8ee2af09",
+      "name": "2010 슈퍼사커",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002D8A6",
+      "pid": "PD140600",
+      "version": "01.00.02",
+      "vendor": "게임빌",
+      "file_sha256": [
+        "c9b287e3edcf5647e530b706723c720f6210629c8369067bc5f3d49599c406de"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "c1d814a9325e5285c547d1d9d3906e0bee45bdfe576e705c9a727747d4680b49",
       "name": "제노니아 1",
       "carrier": "lgt",
