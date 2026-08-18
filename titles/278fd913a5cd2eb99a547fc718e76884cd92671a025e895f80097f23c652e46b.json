@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "278fd913a5cd2eb99a547fc718e76884cd92671a025e895f80097f23c652e46b",
+    "file_sha256": [
+      "2a8a3dcd07eb3fe804707b0fe50cca42f4efdefcb8f8233a54c22f98521f2d3c"
+    ],
+    "name": "놈 ZERO",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002AC84",
+    "pid": "PD129126",
+    "version": "01.00.01",
+    "vendor": "게임빌"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication and license check",
+      "description": "놈 ZERO is a paid title guarded by two gates: the Gamevil server auth check and a local DRM license check that reads platform files (cf.dat/app.dat/admin.dat) the retired LGT store would have installed. Both patches force the game onto its unprotected boot path so it reaches the menu.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x000416e0",
+          "value": "10207047",
+          "expected": "30b5051c",
+          "note": "return 0x10, the already-authenticated result, from the authentication check"
+        },
+        {
+          "address": "0x00005014",
+          "value": "00207047",
+          "expected": "00b52830",
+          "note": "return 0 from the license-protected probe so the loader takes the unprotected init path instead of the DRM error screen"
+        }
+      ]
+    }
+  ]
+}

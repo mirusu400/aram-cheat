@@ -19,6 +19,23 @@
       ]
     },
     {
+      "image_sha256": "278fd913a5cd2eb99a547fc718e76884cd92671a025e895f80097f23c652e46b",
+      "name": "놈 ZERO",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002AC84",
+      "pid": "PD129126",
+      "version": "01.00.01",
+      "vendor": "게임빌",
+      "file_sha256": [
+        "2a8a3dcd07eb3fe804707b0fe50cca42f4efdefcb8f8233a54c22f98521f2d3c"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "6fe987cfb6fdec59fe1ebc86a6a7118a56e572c319bbd337fa90d94456dd8232",
       "name": "제노니아 2",
       "carrier": "lgt",
