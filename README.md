@@ -1,7 +1,7 @@
 # aram-cheat
 
 The cheat database for [ARAM](https://github.com/mirusu400/aram-emu). One
-document per title, keyed by the SHA-256 of the *loaded image* — the mapped
+document per title, keyed by the SHA-256 of the *loaded image*, the mapped
 sections of the program itself, not the archive that delivered it. Re-zipping a
 package changes its file hash but not its image hash, so cheats survive
 repackaging.
@@ -21,8 +21,8 @@ docs/schema.md              the catalog format
 tools/validate.py           the checker CI runs, and the index generator
 ```
 
-`index.json` and `aliases.json` are generated. Edit catalogs and run the
-validator; do not hand-edit either file.
+`index.json` and `aliases.json` are generated. Edit the catalogs and run the
+validator to regenerate them.
 
 ## Adding a cheat
 
@@ -31,15 +31,15 @@ validator; do not hand-edit either file.
 2. Create or edit `titles/<image_sha256>.json` following `docs/schema.md`, and
    list the container you worked from under `file_sha256`.
 3. Record the original bytes in `expected` for every patch. The emulator
-   refuses a patch whose expected bytes do not match guest memory, so this is
-   what keeps a cheat from corrupting a build it was not authored against.
+   applies a patch only when its expected bytes match guest memory, which
+   keeps a cheat safe for the exact build it was authored against.
 4. Run `python tools/validate.py`, which rewrites the generated indexes.
 
 ## Finding an entry
 
 `aliases.json` maps container hashes and readable carrier keys such as
 `lgt-00027baa-pd116132-01.00.06` to an image hash. It is a convenience for
-people and tooling only — carrier identifiers are not unique. Measured across a
+people and tooling only, carrier identifiers are not unique. Measured across a
 280-package corpus, one AID covers as many as twelve unrelated titles, and one
 AID+PID pair still spans two builds with different code, so a descriptor key
 that reaches more than one image is left out of the map entirely.
