@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "0cd814add510af2e280dce5c199d937f18af956c1b0fb0f543b76349ca344994",
+    "file_sha256": [
+      "580a66c32fff91cfd16b89ebd641dd003164ff73a4afa5009ed162db75683ec2"
+    ],
+    "name": "밀실탈출-검은방3",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002E829",
+    "pid": "PD144693",
+    "version": "01.00.02",
+    "vendor": "일렉트로닉아츠코리아"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip MIDAS server authentication",
+      "description": "검은방3 sends a MIDAS_TESTPHONE_AUTH request to 210.222.18.28 and hangs on the \"인증 처리중\" (authenticating) screen until the retired server replies. The auth screen proceeds only when the connection state (global 0x1400050) reaches 1, which the response parser sets. This patch forces that screen's proceed branch to be taken unconditionally, so the title skips the dead-server wait and reaches the usage-guide screen and the game.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-core/issues/52",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x0000632c",
+          "value": "2fe0",
+          "expected": "2fd0",
+          "note": "auth screen: `b 0x638e` instead of `beq 0x638e`, always taking the connected/proceed branch past the MIDAS \"처리중\" wait"
+        }
+      ]
+    }
+  ]
+}

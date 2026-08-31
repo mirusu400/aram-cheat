@@ -19,6 +19,23 @@
       ]
     },
     {
+      "image_sha256": "0cd814add510af2e280dce5c199d937f18af956c1b0fb0f543b76349ca344994",
+      "name": "밀실탈출-검은방3",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002E829",
+      "pid": "PD144693",
+      "version": "01.00.02",
+      "vendor": "일렉트로닉아츠코리아",
+      "file_sha256": [
+        "580a66c32fff91cfd16b89ebd641dd003164ff73a4afa5009ed162db75683ec2"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "278fd913a5cd2eb99a547fc718e76884cd92671a025e895f80097f23c652e46b",
       "name": "놈 ZERO",
       "carrier": "lgt",
