@@ -18,7 +18,7 @@
       "description": "하이브리드's second DRM checkpoint always faults: the auth-success handler indexes a state-constructor jump table with the response-buffer pointer instead of a small subtype id, so it jumps out of range. This forces subtype 3 (a valid constructor), so the success routine builds a working session and the title reaches gameplay. Works with the carrier auth completion that delivers the auth-success status (aram-authd).",
       "category": "bypass",
       "author": "aram",
-      "reference": "https://github.com/mirusu400/aram-emu/issues/52",
+      "reference": "https://github.com/mirusu400/aram-core/issues/52",
       "restore_on_disable": true,
       "default_enabled": true,
       "patches": [
