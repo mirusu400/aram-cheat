@@ -36,6 +36,20 @@
       ]
     },
     {
+      "image_sha256": "45613de324e91b23e1003065e73514b8a4a851d73cfe1f3e36457b924f9aea44",
+      "name": "하이브리드",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002996E",
+      "file_sha256": [
+        "e68b1c8aef85c584dc6e5e225f0c226641b23f6c523bf0f59eb662151f9cf954"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-drm-auth-checkpoint"
+      ]
+    },
+    {
       "image_sha256": "6fe987cfb6fdec59fe1ebc86a6a7118a56e572c319bbd337fa90d94456dd8232",
       "name": "제노니아 2",
       "carrier": "lgt",

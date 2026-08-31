@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "45613de324e91b23e1003065e73514b8a4a851d73cfe1f3e36457b924f9aea44",
+    "file_sha256": [
+      "e68b1c8aef85c584dc6e5e225f0c226641b23f6c523bf0f59eb662151f9cf954"
+    ],
+    "name": "하이브리드",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002996E"
+  },
+  "cheats": [
+    {
+      "id": "skip-drm-auth-checkpoint",
+      "name": "Skip DRM authentication checkpoint",
+      "description": "하이브리드's second DRM checkpoint always faults: the auth-success handler indexes a state-constructor jump table with the response-buffer pointer instead of a small subtype id, so it jumps out of range. This forces subtype 3 (a valid constructor), so the success routine builds a working session and the title reaches gameplay. Works with the carrier auth completion that delivers the auth-success status (aram-authd).",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-emu/issues/52",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x0000193a",
+          "value": "0324",
+          "expected": "0c1c",
+          "note": "success handler 0x1934: `movs r4,#3` instead of `adds r4,r1,#0`, so the state subtype is the valid jump-table index 3 rather than the response-buffer pointer"
+        }
+      ]
+    }
+  ]
+}
