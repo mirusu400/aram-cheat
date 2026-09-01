@@ -67,6 +67,23 @@
       ]
     },
     {
+      "image_sha256": "575673d2032932da46a8d04f73892b695649c96ce86d8051e5da125439f31de5",
+      "name": "이노티아 연대기 2",
+      "carrier": "ktf",
+      "format": "ktf-wipi",
+      "aid": "010100D5",
+      "pid": "PD007974",
+      "version": "01.00.01",
+      "vendor": "컴투스",
+      "file_sha256": [
+        "974e0df9ab1e51751efdef21a0fe324ad79917f41cd049fcfaf7c46c14f9e324"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-com2us-authentication"
+      ]
+    },
+    {
       "image_sha256": "6fe987cfb6fdec59fe1ebc86a6a7118a56e572c319bbd337fa90d94456dd8232",
       "name": "제노니아 2",
       "carrier": "lgt",

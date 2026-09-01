@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "575673d2032932da46a8d04f73892b695649c96ce86d8051e5da125439f31de5",
+    "file_sha256": [
+      "974e0df9ab1e51751efdef21a0fe324ad79917f41cd049fcfaf7c46c14f9e324"
+    ],
+    "name": "이노티아 연대기 2",
+    "carrier": "ktf",
+    "format": "ktf-wipi",
+    "profile_id": "wipi-1.2.1/ktf/generic",
+    "aid": "010100D5",
+    "pid": "PD007974",
+    "version": "01.00.01",
+    "vendor": "컴투스"
+  },
+  "cheats": [
+    {
+      "id": "skip-com2us-authentication",
+      "name": "Skip Com2uS authentication",
+      "description": "Starts the game past the Com2uS certificate authentication. The bundled cert.c2s is tied to the original purchaser's handset identity and cannot be validated on any other device, so the game otherwise stops at the 인증오류 (오류번호:1001) screen and exits.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00176956",
+          "value": "14e0c046",
+          "expected": "b4f719fb",
+          "note": "branch the com2us auth state-machine case that verifies the certificate straight to its success continuation (loc_176982 -> proceed), skipping the device-bound cert/environment check"
+        }
+      ]
+    }
+  ]
+}
