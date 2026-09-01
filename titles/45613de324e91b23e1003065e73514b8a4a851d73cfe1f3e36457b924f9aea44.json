@@ -15,13 +15,19 @@
     {
       "id": "skip-drm-auth-checkpoint",
       "name": "Skip DRM authentication checkpoint",
-      "description": "하이브리드's second DRM checkpoint always faults: the auth-success handler indexes a state-constructor jump table with the response-buffer pointer instead of a small subtype id, so it jumps out of range. This forces subtype 3 (a valid constructor), so the success routine builds a working session and the title reaches gameplay. Works with the carrier auth completion that delivers the auth-success status (aram-authd).",
+      "description": "하이브리드's DRM checkpoint only clears when a carrier auth backend delivers status 0x5001; with the LGT servers gone the session dispatcher at 0x1a28 always takes its failure chain and the title dead-ends on 인증에 실패하였습니다. This forces the dispatcher's status compare to always match, so it enters the auth-success handler regardless of any network response, and forces that handler's state-constructor index to the one valid subtype (3) instead of the response-buffer pointer it would otherwise index the jump table with (out of range → fault). The title then builds a session and reaches gameplay with no auth backend.",
       "category": "bypass",
       "author": "aram",
-      "reference": "https://github.com/mirusu400/aram-core/issues/52",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/1",
       "restore_on_disable": true,
       "default_enabled": true,
       "patches": [
+        {
+          "address": "0x00001a2e",
+          "value": "8942",
+          "expected": "9942",
+          "note": "session dispatcher 0x1a28: `cmp r1,r1` instead of `cmp r1,r3`, so the following `bne` never taken and status is treated as the 0x5001 success value without a live carrier auth response"
+        },
         {
           "address": "0x0000193a",
           "value": "0324",
