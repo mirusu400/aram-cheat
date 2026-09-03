@@ -1,5 +1,7 @@
 # aram-cheat
 
+[ARAM website](https://aram.mir.sh/en/) · [Compatibility guide](https://aram.mir.sh/en/compatibility/) · [FAQ](https://aram.mir.sh/en/faq/)
+
 The cheat database for [ARAM](https://github.com/mirusu400/aram-emu). One
 document per title, keyed by the SHA-256 of the *loaded image*, the mapped
 sections of the program itself, not the archive that delivered it. Re-zipping a
