@@ -15,24 +15,24 @@
     {
       "id": "skip-drm-auth-checkpoint",
       "name": "Skip DRM authentication checkpoint",
-      "description": "하이브리드's DRM checkpoint only clears when a carrier auth backend delivers status 0x5001; with the LGT servers gone the session dispatcher at 0x1a28 always takes its failure chain and the title dead-ends on 인증에 실패하였습니다. This forces the dispatcher's status compare to always match, so it enters the auth-success handler regardless of any network response, and forces that handler's state-constructor index to the one valid subtype (3) instead of the response-buffer pointer it would otherwise index the jump table with (out of range → fault). The title then builds a session and reaches gameplay with no auth backend.",
+      "description": "하이브리드 waits for a retired LGT carrier callback (0x5001) before constructing the playable game state. The bypass treats the first post-initialization key notification (0xa100) as that handoff and selects the valid game-state subtype (3). Unlike the former compare-self patch, it leaves the earlier boot event and unrelated dispatcher traffic on their normal paths, so the title reaches gameplay without corrupting session initialization.",
       "category": "bypass",
       "author": "aram",
-      "reference": "https://github.com/mirusu400/aram-cheat/issues/1",
+      "reference": "https://github.com/mirusu400/aram-core/issues/226",
       "restore_on_disable": true,
       "default_enabled": true,
       "patches": [
         {
-          "address": "0x00001a2e",
-          "value": "8942",
-          "expected": "9942",
-          "note": "session dispatcher 0x1a28: `cmp r1,r1` instead of `cmp r1,r3`, so the following `bne` never taken and status is treated as the 0x5001 success value without a live carrier auth response"
+          "address": "0x00001a4c",
+          "value": "00a10000",
+          "expected": "01500000",
+          "note": "session dispatcher 0x1a28: recognize the post-initialization 0xa100 key notification as the handoff event instead of waiting for the retired 0x5001 carrier callback; earlier boot and unrelated events still use the normal fallback path"
         },
         {
           "address": "0x0000193a",
           "value": "0324",
           "expected": "0c1c",
-          "note": "success handler 0x1934: `movs r4,#3` instead of `adds r4,r1,#0`, so the state subtype is the valid jump-table index 3 rather than the response-buffer pointer"
+          "note": "handoff handler 0x1934: `movs r4,#3` instead of `adds r4,r1,#0`, selecting the valid playable game-state constructor"
         }
       ]
     }
