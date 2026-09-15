@@ -152,6 +152,23 @@
       ]
     },
     {
+      "image_sha256": "76de3fef497783e4c93a1f9a3fbc06ab4580422d4b1b93331b3ed9ca32487a3f",
+      "name": "2010밴쿠버올림픽",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002D897",
+      "pid": "PD140585",
+      "version": "01.00.03",
+      "vendor": "지오인터랙티브",
+      "file_sha256": [
+        "1cd151222bdea0367757304cde2c537374517d60e1f5708a6359bbad4d05faf5"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "8b9836232ce717e34e3a69f1d07eba788c3f3bacc1ff9c3f8e19a3afa682dad9",
       "name": "삼국지연의2",
       "carrier": "sktt",
