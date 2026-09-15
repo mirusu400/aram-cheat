@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "804becc2fb50b3fa5cfb60f57e65f3de2bac332f0fe7405e4924b98faa6bd703",
+    "file_sha256": [
+      "f5e21001612d95d72f20277f9c42d19f6c2ee07c0dc93151ecccc257f95217b6"
+    ],
+    "name": "테일즈위버 막시민편",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "00029747",
+    "pid": "PD123388",
+    "version": "01.00.01",
+    "vendor": "넥슨모바일"
+  },
+  "cheats": [
+    {
+      "id": "wide-dialogue-window",
+      "name": "Wide dialogue window",
+      "description": "Extends the dialogue window background across wide displays.",
+      "category": "display",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/2",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00034698",
+          "value": "5139",
+          "expected": "3839",
+          "note": "start the full-width background scanlines at the top of the dialogue window"
+        },
+        {
+          "address": "0x0003469c",
+          "value": "0223",
+          "expected": "0123",
+          "note": "make adjacent background scanlines continuous"
+        },
+        {
+          "address": "0x000346a6",
+          "value": "1c2d",
+          "expected": "0f2d",
+          "note": "cover the full dialogue-window height"
+        }
+      ]
+    }
+  ]
+}

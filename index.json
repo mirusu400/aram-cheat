@@ -186,6 +186,23 @@
       ]
     },
     {
+      "image_sha256": "804becc2fb50b3fa5cfb60f57e65f3de2bac332f0fe7405e4924b98faa6bd703",
+      "name": "테일즈위버 막시민편",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "00029747",
+      "pid": "PD123388",
+      "version": "01.00.01",
+      "vendor": "넥슨모바일",
+      "file_sha256": [
+        "f5e21001612d95d72f20277f9c42d19f6c2ee07c0dc93151ecccc257f95217b6"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "wide-dialogue-window"
+      ]
+    },
+    {
       "image_sha256": "8b9836232ce717e34e3a69f1d07eba788c3f3bacc1ff9c3f8e19a3afa682dad9",
       "name": "삼국지연의2",
       "carrier": "sktt",
