@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "08ba31acfba9c844121d8f5d5fa4d018f52b058e0a351cbe96f69ebe426a4ec1",
+    "file_sha256": [
+      "2d5cada030045cfad14c9f29f0007ad79d1f4da7447658846f7bdbedc224130b"
+    ],
+    "name": "슈퍼액션히어로3",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "00028E76",
+    "pid": "PD121120",
+    "version": "01.00.02",
+    "vendor": "컴투스"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "슈퍼액션히어로3 requires a certificate from its retired LGT authentication server before entering the game. This patch takes the existing-certificate path so the game starts without opening the dead network service.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/6",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x000860a2",
+          "value": "07e0",
+          "expected": "07d1",
+          "note": "always take the existing-certificate branch when leaving the title screen"
+        }
+      ]
+    }
+  ]
+}

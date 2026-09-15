@@ -2,6 +2,23 @@
   "version": 3,
   "titles": [
     {
+      "image_sha256": "08ba31acfba9c844121d8f5d5fa4d018f52b058e0a351cbe96f69ebe426a4ec1",
+      "name": "슈퍼액션히어로3",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "00028E76",
+      "pid": "PD121120",
+      "version": "01.00.02",
+      "vendor": "컴투스",
+      "file_sha256": [
+        "2d5cada030045cfad14c9f29f0007ad79d1f4da7447658846f7bdbedc224130b"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "0938a9b2c38badb69d51571d162a1d6f1e19d18a6e41cf54f0d0b0e599dc462d",
       "name": "정통맞고 2009",
       "carrier": "lgt",
