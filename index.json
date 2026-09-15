@@ -101,6 +101,21 @@
       ]
     },
     {
+      "image_sha256": "8b9836232ce717e34e3a69f1d07eba788c3f3bacc1ff9c3f8e19a3afa682dad9",
+      "name": "삼국지연의2",
+      "carrier": "sktt",
+      "format": "java-archive",
+      "version": "1.0.0",
+      "vendor": "잼버거",
+      "file_sha256": [
+        "a42f77f4495565e57a0a1592dc92ac3ce44c8c462657f69df5984933cf4ecdfa"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-skt-content-authentication"
+      ]
+    },
+    {
       "image_sha256": "abd49992205ac9d778245035db08f22a435370ecf33add8e8c090fcc8ee2af09",
       "name": "2010 슈퍼사커",
       "carrier": "lgt",

@@ -59,6 +59,12 @@ the emulator actually maps — each section's address, size, permissions, and
 initialized bytes — so it is stable across repackaging and sensitive to every
 difference that could move a patch target.
 
+For SKVM Java archives, the image hash covers the original class files in
+sorted internal-name order. The same ordering defines a virtual class address
+space: the first class starts at `0x20000000`, each later class starts at the
+next 4 KiB boundary, and a patch address is that class base plus its raw
+`.class` file offset. These regions are exposed as `skvm.class.<internal-name>`.
+
 ## Fields
 
 ### title
@@ -133,6 +139,9 @@ unmodified again.
   emulator derives its internal code names from them.
 - Addresses are guest addresses after loading, not file offsets. For a Raptor
   module, that is the ELF section address the loader maps.
+- For an SKVM class, use its deterministic virtual class base plus the raw
+  `.class` offset. Class patches may change bytecode or constant data but must
+  preserve the parsed class, field, method, and code layout.
 - A patch may target executable memory. Code sections are mapped writable and
   the interpreter keeps no decoded-instruction cache, so a patched branch takes
   effect on the next fetch.

@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "8b9836232ce717e34e3a69f1d07eba788c3f3bacc1ff9c3f8e19a3afa682dad9",
+    "file_sha256": [
+      "a42f77f4495565e57a0a1592dc92ac3ce44c8c462657f69df5984933cf4ecdfa"
+    ],
+    "name": "삼국지연의2",
+    "carrier": "sktt",
+    "format": "java-archive",
+    "profile_id": "wipi-1.2.1/skt/generic",
+    "version": "1.0.0",
+    "vendor": "잼버거"
+  },
+  "cheats": [
+    {
+      "id": "skip-skt-content-authentication",
+      "name": "Skip content authentication",
+      "description": "Starts the game past its obsolete SKT content authentication check.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/9",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x20038143",
+          "value": "b1",
+          "expected": "04",
+          "note": "return immediately from j.a(MIDlet), the bundled SKT content verifier, before it can show the rejection screen"
+        }
+      ]
+    }
+  ]
+}
