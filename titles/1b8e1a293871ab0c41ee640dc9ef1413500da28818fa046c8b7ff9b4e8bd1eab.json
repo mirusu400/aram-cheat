@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "1b8e1a293871ab0c41ee640dc9ef1413500da28818fa046c8b7ff9b4e8bd1eab",
+    "file_sha256": [
+      "caf9d76ffd13e6eb2f580261d6ccd865fe6b7c42cc2b1462b5fa2f7e0457847d"
+    ],
+    "name": "냐옹타이쿤2",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "00026E9C",
+    "pid": "PD112744",
+    "version": "02.00.00",
+    "vendor": "게임빌"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "냐옹타이쿤2 waits forever on the server connection screen because its retired LGT authentication service no longer answers. This patch accepts the local authentication check so the game starts without opening the dead network service.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/7",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00016674",
+          "value": "01207047",
+          "expected": "70b583b0",
+          "note": "return the already-authenticated result from the local authentication check"
+        }
+      ]
+    }
+  ]
+}

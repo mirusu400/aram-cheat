@@ -36,6 +36,23 @@
       ]
     },
     {
+      "image_sha256": "1b8e1a293871ab0c41ee640dc9ef1413500da28818fa046c8b7ff9b4e8bd1eab",
+      "name": "냐옹타이쿤2",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "00026E9C",
+      "pid": "PD112744",
+      "version": "02.00.00",
+      "vendor": "게임빌",
+      "file_sha256": [
+        "caf9d76ffd13e6eb2f580261d6ccd865fe6b7c42cc2b1462b5fa2f7e0457847d"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "278fd913a5cd2eb99a547fc718e76884cd92671a025e895f80097f23c652e46b",
       "name": "놈 ZERO",
       "carrier": "lgt",
