@@ -246,6 +246,23 @@
         "4b8c8f5ff7d61e1964eb8784d60997bcf977050a9df96cf853a9643109fec7ce"
       ],
       "cheats": 1
+    },
+    {
+      "image_sha256": "e2d955552451da85fa886adb5df8dc0e411d72eb4ad103530cb50a90db740480",
+      "name": "메이플스토리 해적편",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002A4F0",
+      "pid": "PD127143",
+      "version": "01.00.01",
+      "vendor": "넥슨모바일",
+      "file_sha256": [
+        "7f2c396bced5abba51e93cd1509eb06102ba9fec33d8ec96f79258c2ee3b039c"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-first-run-authentication"
+      ]
     }
   ]
 }

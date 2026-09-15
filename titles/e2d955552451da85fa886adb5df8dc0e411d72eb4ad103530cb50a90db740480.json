@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "e2d955552451da85fa886adb5df8dc0e411d72eb4ad103530cb50a90db740480",
+    "file_sha256": [
+      "7f2c396bced5abba51e93cd1509eb06102ba9fec33d8ec96f79258c2ee3b039c"
+    ],
+    "name": "메이플스토리 해적편",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002A4F0",
+    "pid": "PD127143",
+    "version": "01.00.01",
+    "vendor": "넥슨모바일"
+  },
+  "cheats": [
+    {
+      "id": "skip-first-run-authentication",
+      "name": "Skip first-run authentication",
+      "description": "Allows the game to continue without the retired LGT first-run authentication service.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/3",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x000033d4",
+          "value": "07e0",
+          "expected": "07d1",
+          "note": "always continue through the already-certified startup path instead of opening first-run carrier authentication"
+        }
+      ]
+    }
+  ]
+}
