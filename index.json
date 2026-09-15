@@ -67,6 +67,23 @@
       ]
     },
     {
+      "image_sha256": "4d0e5c4f07bc018c54446b839b3d98e075917b364e2d800a191443d7fee8d2f6",
+      "name": "알바타이쿤2",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002D4D0",
+      "pid": "PD139539",
+      "version": "01.00.02",
+      "vendor": "픽토소프트",
+      "file_sha256": [
+        "fe76e641bb3df380b5a2cbd61b978c83c0cbead3ea3c13b6cf38b07571e74c5a"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-authentication"
+      ]
+    },
+    {
       "image_sha256": "575673d2032932da46a8d04f73892b695649c96ce86d8051e5da125439f31de5",
       "name": "이노티아 연대기 2",
       "carrier": "ktf",

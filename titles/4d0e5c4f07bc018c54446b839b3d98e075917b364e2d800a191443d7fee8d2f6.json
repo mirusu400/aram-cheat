@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "4d0e5c4f07bc018c54446b839b3d98e075917b364e2d800a191443d7fee8d2f6",
+    "file_sha256": [
+      "fe76e641bb3df380b5a2cbd61b978c83c0cbead3ea3c13b6cf38b07571e74c5a"
+    ],
+    "name": "알바타이쿤2",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002D4D0",
+    "pid": "PD139539",
+    "version": "01.00.02",
+    "vendor": "픽토소프트"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-authentication",
+      "name": "Skip server authentication",
+      "description": "알바타이쿤2 waits forever for a response from its retired LGT authentication server. These patches complete the pending request locally and accept it as a successful SASH response so the game reaches the main menu.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/8",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x0002296c",
+          "value": "002b09d1",
+          "expected": "1b2b09d0",
+          "note": "dispatch any active authentication request once instead of waiting for network state 27"
+        },
+        {
+          "address": "0x000229a6",
+          "value": "00bf",
+          "expected": "11d1",
+          "note": "accept the pending request as the successful SASH response"
+        }
+      ]
+    }
+  ]
+}
