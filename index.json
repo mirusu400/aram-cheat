@@ -182,6 +182,19 @@
       ]
     },
     {
+      "image_sha256": "73f667b7d240634bb9139c53c423e4f3d83c1abd53688c31f95a84837b3e12b5",
+      "name": "레이카르나",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "file_sha256": [
+        "619d98bc8f64c3d4b4e7d975c922ab2e6f0daaa3e26352030f02a864074ba790"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-data-check"
+      ]
+    },
+    {
       "image_sha256": "76de3fef497783e4c93a1f9a3fbc06ab4580422d4b1b93331b3ed9ca32487a3f",
       "name": "2010밴쿠버올림픽",
       "carrier": "lgt",

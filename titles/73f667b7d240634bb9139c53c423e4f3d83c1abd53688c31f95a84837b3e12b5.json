@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "73f667b7d240634bb9139c53c423e4f3d83c1abd53688c31f95a84837b3e12b5",
+    "file_sha256": [
+      "619d98bc8f64c3d4b4e7d975c922ab2e6f0daaa3e26352030f02a864074ba790"
+    ],
+    "name": "레이카르나",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-data-check",
+      "name": "Skip server data check",
+      "description": "Starts a local game without requesting saved data from the retired server.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/10",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x000431ea",
+          "value": "0323",
+          "expected": "0223",
+          "note": "enter the game's no-server-save state"
+        },
+        {
+          "address": "0x000431ee",
+          "value": "0020c046",
+          "expected": "def73dff",
+          "note": "skip the retired server request and clear its request handle"
+        }
+      ]
+    }
+  ]
+}
