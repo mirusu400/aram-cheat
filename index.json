@@ -278,6 +278,19 @@
       ]
     },
     {
+      "image_sha256": "ce5aea15af34893e0be582ae6b762eed783c11f32a7daa73e0931d4f66f8318d",
+      "name": "창세기전3 ep4",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "file_sha256": [
+        "18608bcf21fdad8970d65c856a271a3a635878de94f017657d44ee69dc933a8a"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-retired-connection"
+      ]
+    },
+    {
       "image_sha256": "de02f734b46595c96a10e0bb01e8ade2723ee410ad7ed12a57643964c7decf87",
       "name": "드래곤로드",
       "carrier": "ktf",

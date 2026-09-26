@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "ce5aea15af34893e0be582ae6b762eed783c11f32a7daa73e0931d4f66f8318d",
+    "file_sha256": [
+      "18608bcf21fdad8970d65c856a271a3a635878de94f017657d44ee69dc933a8a"
+    ],
+    "name": "창세기전3 ep4",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor"
+  },
+  "cheats": [
+    {
+      "id": "skip-retired-connection",
+      "name": "Skip retired connection",
+      "description": "Cancels the retired server connection through the game's own screen transition, allowing the local game menu to open.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/13",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00029714",
+          "value": "281cddf70dfa21e0",
+          "expected": "e86b03689b6c41f0",
+          "note": "use the normal cancel-screen handler while the retired network connection is active"
+        }
+      ]
+    }
+  ]
+}

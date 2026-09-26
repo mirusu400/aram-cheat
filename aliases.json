@@ -2,6 +2,7 @@
   "version": 3,
   "note": "Lookup aid for humans and tooling. The product resolves catalogs by image_sha256; these keys are not authoritative.",
   "by_file_sha256": {
+    "18608bcf21fdad8970d65c856a271a3a635878de94f017657d44ee69dc933a8a": "ce5aea15af34893e0be582ae6b762eed783c11f32a7daa73e0931d4f66f8318d",
     "1cd151222bdea0367757304cde2c537374517d60e1f5708a6359bbad4d05faf5": "76de3fef497783e4c93a1f9a3fbc06ab4580422d4b1b93331b3ed9ca32487a3f",
     "2a8a3dcd07eb3fe804707b0fe50cca42f4efdefcb8f8233a54c22f98521f2d3c": "278fd913a5cd2eb99a547fc718e76884cd92671a025e895f80097f23c652e46b",
     "2d5cada030045cfad14c9f29f0007ad79d1f4da7447658846f7bdbedc224130b": "08ba31acfba9c844121d8f5d5fa4d018f52b058e0a351cbe96f69ebe426a4ec1",
