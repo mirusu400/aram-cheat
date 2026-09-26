@@ -104,6 +104,19 @@
       ]
     },
     {
+      "image_sha256": "3b8be60393f13cdd76662eae336a5d6aa9fca8623c1b2741bb0420e2c56b051c",
+      "name": "창세기전3 ep3",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "file_sha256": [
+        "53d2d34efe11dcc752d66a39c15a5f75e29fc1a80daf9b89ded8c18f21d32af1"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-retired-data-server"
+      ]
+    },
+    {
       "image_sha256": "45613de324e91b23e1003065e73514b8a4a851d73cfe1f3e36457b924f9aea44",
       "name": "하이브리드",
       "carrier": "lgt",
