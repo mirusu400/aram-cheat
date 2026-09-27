@@ -304,6 +304,19 @@
       ]
     },
     {
+      "image_sha256": "cffda5c88bce6657cc5f46f3a67273da4873e3daaa9b4701c3123d4b2ade3bf9",
+      "name": "아이뮤지션2",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "file_sha256": [
+        "3ceae1d40ab7c935e7f57d3851c5516dd7295799d202c7d61196566ce30d56bb"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "offline-local-start"
+      ]
+    },
+    {
       "image_sha256": "de02f734b46595c96a10e0bb01e8ade2723ee410ad7ed12a57643964c7decf87",
       "name": "드래곤로드",
       "carrier": "ktf",

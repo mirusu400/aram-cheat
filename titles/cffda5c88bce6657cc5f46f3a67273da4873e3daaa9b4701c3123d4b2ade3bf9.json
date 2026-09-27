@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "cffda5c88bce6657cc5f46f3a67273da4873e3daaa9b4701c3123d4b2ade3bf9",
+    "file_sha256": [
+      "3ceae1d40ab7c935e7f57d3851c5516dd7295799d202c7d61196566ce30d56bb"
+    ],
+    "name": "아이뮤지션2",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor"
+  },
+  "cheats": [
+    {
+      "id": "offline-local-start",
+      "name": "Start locally without server authentication",
+      "description": "Allows local play when the retired server certificate is absent and skips server save restoration. Server saves are unavailable. Requires aram-core cf36a21 or newer for the full-screen framebuffer repair.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/12",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x0005fb54",
+          "value": "0520",
+          "expected": "0120",
+          "note": "enter the existing authentication-complete state instead of requesting a missing certificate from the retired server"
+        },
+        {
+          "address": "0x000604b4",
+          "value": "fff7e4fcc046",
+          "expected": "0120fff7f1fc",
+          "note": "call the existing local-start handler at 0x5fe80 instead of entering the server save-check prompt state"
+        }
+      ]
+    }
+  ]
+}
