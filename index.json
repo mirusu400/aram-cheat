@@ -87,6 +87,19 @@
       ]
     },
     {
+      "image_sha256": "1e7e595b4106476ff838fc7ae69932895bc32bd327d9c95d5e82b3be53f93bee",
+      "name": "몬스터마스터",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "file_sha256": [
+        "b9bfcaf427222a62a7c904c9561fca706725adf5782e1f4a57328bbe7dd349ab"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-retired-certificate"
+      ]
+    },
+    {
       "image_sha256": "278fd913a5cd2eb99a547fc718e76884cd92671a025e895f80097f23c652e46b",
       "name": "놈 ZERO",
       "carrier": "lgt",

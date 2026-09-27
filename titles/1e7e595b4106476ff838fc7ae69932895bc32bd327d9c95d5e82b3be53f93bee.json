@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "1e7e595b4106476ff838fc7ae69932895bc32bd327d9c95d5e82b3be53f93bee",
+    "file_sha256": [
+      "b9bfcaf427222a62a7c904c9561fca706725adf5782e1f4a57328bbe7dd349ab"
+    ],
+    "name": "몬스터마스터",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor"
+  },
+  "cheats": [
+    {
+      "id": "skip-retired-certificate",
+      "name": "Skip retired certificate request",
+      "description": "Continues to the local game menu when the retired server certificate is absent.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/11",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00027c10",
+          "value": "0320",
+          "expected": "1620",
+          "note": "send the normal game-menu event instead of the certificate-request event when the certificate file is missing"
+        }
+      ]
+    }
+  ]
+}
