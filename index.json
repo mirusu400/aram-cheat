@@ -161,6 +161,23 @@
       ]
     },
     {
+      "image_sha256": "4f3636bf21556a615b66f2f038e27de83302888f4f6b5d515a1352556dad322e",
+      "name": "리듬스타2",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002E195",
+      "pid": "PD142929",
+      "version": "01.00.05",
+      "vendor": "(주)에이앤비소프트",
+      "file_sha256": [
+        "3fd665ab33be4555426f28032c74ef0e60001eaa50994b61f8065c5ff61389af"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-retired-certificate"
+      ]
+    },
+    {
       "image_sha256": "575673d2032932da46a8d04f73892b695649c96ce86d8051e5da125439f31de5",
       "name": "이노티아 연대기 2",
       "carrier": "ktf",

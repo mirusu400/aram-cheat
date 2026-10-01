@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "4f3636bf21556a615b66f2f038e27de83302888f4f6b5d515a1352556dad322e",
+    "file_sha256": [
+      "3fd665ab33be4555426f28032c74ef0e60001eaa50994b61f8065c5ff61389af"
+    ],
+    "name": "리듬스타2",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002E195",
+    "pid": "PD142929",
+    "version": "01.00.05",
+    "vendor": "(주)에이앤비소프트"
+  },
+  "cheats": [
+    {
+      "id": "skip-retired-certificate",
+      "name": "Skip retired certificate request",
+      "description": "Starts the local game without requesting a certificate from the retired carrier server.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/15",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00061be4",
+          "value": "24e0",
+          "expected": "24d1",
+          "note": "redirect the missing-certificate branch to the local-success trampoline"
+        },
+        {
+          "address": "0x00061c30",
+          "value": "06222b1ce0331a60281c0721284b11f005f839e0",
+          "expected": "281c0b212a4b11f009f83de02b1cf0331a68002a",
+          "note": "report the certificate step as complete and return through the original state-handler epilogue"
+        }
+      ]
+    }
+  ]
+}
