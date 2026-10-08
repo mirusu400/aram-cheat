@@ -117,6 +117,21 @@
       ]
     },
     {
+      "image_sha256": "3809bb45aab109270f911beb40be50d8881c3f09b00706f5095b60f95c6de2b7",
+      "name": "카오스블레이드",
+      "carrier": "sktt",
+      "format": "java-archive",
+      "version": "1.0.0",
+      "vendor": "(주)게임빌",
+      "file_sha256": [
+        "eefc947d83374af5785201f34941e0e1d51cb12115d8d00edfd942179e8afe53"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-skt-content-authentication"
+      ]
+    },
+    {
       "image_sha256": "3b8be60393f13cdd76662eae336a5d6aa9fca8623c1b2741bb0420e2c56b051c",
       "name": "창세기전3 ep3",
       "carrier": "lgt",

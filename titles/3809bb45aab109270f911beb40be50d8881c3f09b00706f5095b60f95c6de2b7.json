@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "3809bb45aab109270f911beb40be50d8881c3f09b00706f5095b60f95c6de2b7",
+    "file_sha256": [
+      "eefc947d83374af5785201f34941e0e1d51cb12115d8d00edfd942179e8afe53"
+    ],
+    "name": "카오스블레이드",
+    "carrier": "sktt",
+    "format": "java-archive",
+    "profile_id": "wipi-1.2.1/skt/generic",
+    "version": "1.0.0",
+    "vendor": "(주)게임빌"
+  },
+  "cheats": [
+    {
+      "id": "skip-skt-content-authentication",
+      "name": "Skip content authentication",
+      "description": "Starts the local game past its obsolete handset-bound SKT content authentication check.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/16",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x20001c86",
+          "value": "b1",
+          "expected": "2a",
+          "note": "return immediately from SecureUtil.validate(MIDlet) before the obsolete handset check can display the rejection screen and terminate the game"
+        }
+      ]
+    }
+  ]
+}
