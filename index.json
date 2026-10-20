@@ -289,6 +289,23 @@
       ]
     },
     {
+      "image_sha256": "9a3ece95668c716aafec7575f25e18fe04418ecfc6da61b858f146f6dd016a5b",
+      "name": "아무이유없어2",
+      "carrier": "ktf",
+      "format": "ktf-wipi",
+      "aid": "01042813",
+      "pid": "PD009797",
+      "version": "01.00.05",
+      "vendor": "KTH",
+      "file_sha256": [
+        "7344e0759c9e21784206ded37c5ca3eacfaf54183f27847a01e979e86a827628"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-server-save-check"
+      ]
+    },
+    {
       "image_sha256": "abd49992205ac9d778245035db08f22a435370ecf33add8e8c090fcc8ee2af09",
       "name": "2010 슈퍼사커",
       "carrier": "lgt",

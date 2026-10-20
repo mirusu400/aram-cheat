@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "9a3ece95668c716aafec7575f25e18fe04418ecfc6da61b858f146f6dd016a5b",
+    "file_sha256": [
+      "7344e0759c9e21784206ded37c5ca3eacfaf54183f27847a01e979e86a827628"
+    ],
+    "name": "아무이유없어2",
+    "carrier": "ktf",
+    "format": "ktf-wipi",
+    "profile_id": "wipi-1.2.1/ktf/generic",
+    "aid": "01042813",
+    "pid": "PD009797",
+    "version": "01.00.05",
+    "vendor": "KTH"
+  },
+  "cheats": [
+    {
+      "id": "skip-server-save-check",
+      "name": "Skip server save check",
+      "description": "Starts a local game without checking for saved data on the retired KTF server.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/19",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x001296ea",
+          "value": "aae0",
+          "expected": "614b",
+          "note": "branch the initial network state to the game's existing no-server-save state at 0x00129842, preserving its normal confirmation and local-game initialization path"
+        }
+      ]
+    }
+  ]
+}
