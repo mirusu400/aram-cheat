@@ -340,6 +340,23 @@
       ]
     },
     {
+      "image_sha256": "a07d0074c564e5660affbab4c470cd6be64c70401c909e7f70bb88bf26eb1d85",
+      "name": "영웅서기5-칠흑의계약",
+      "carrier": "ktf",
+      "format": "ktf-wipi",
+      "aid": "01042B12",
+      "pid": "PD009839",
+      "version": "01.00.00",
+      "vendor": "일렉트로닉아츠코리아(유)",
+      "file_sha256": [
+        "7bd3a6c272f53ca7b1d67296f705a99f03357f4aa24880d07c558071c8428c38"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "offline-local-start"
+      ]
+    },
+    {
       "image_sha256": "abd49992205ac9d778245035db08f22a435370ecf33add8e8c090fcc8ee2af09",
       "name": "2010 슈퍼사커",
       "carrier": "lgt",

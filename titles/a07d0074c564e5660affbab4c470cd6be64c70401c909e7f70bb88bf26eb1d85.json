@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "a07d0074c564e5660affbab4c470cd6be64c70401c909e7f70bb88bf26eb1d85",
+    "file_sha256": [
+      "7bd3a6c272f53ca7b1d67296f705a99f03357f4aa24880d07c558071c8428c38"
+    ],
+    "name": "영웅서기5-칠흑의계약",
+    "carrier": "ktf",
+    "format": "ktf-wipi",
+    "profile_id": "wipi-1.2.1/ktf/generic",
+    "aid": "01042B12",
+    "pid": "PD009839",
+    "version": "01.00.00",
+    "vendor": "일렉트로닉아츠코리아(유)"
+  },
+  "cheats": [
+    {
+      "id": "offline-local-start",
+      "name": "Start locally without retired carrier checks",
+      "description": "Starts a local game without the retired KTF handset authentication and first-run SMS consent. The title still performs its intended one-time restart.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-core/issues/544",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x0016b7cc",
+          "value": "0122",
+          "expected": "021c",
+          "note": "record an available authentication state instead of the retired KTF handset result"
+        },
+        {
+          "address": "0x0020168a",
+          "value": "0521",
+          "expected": "0121",
+          "note": "persist the completed first-run state without opening the retired SMS consent flow"
+        }
+      ]
+    }
+  ]
+}
