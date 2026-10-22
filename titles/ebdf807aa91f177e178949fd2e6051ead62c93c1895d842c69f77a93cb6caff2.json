@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "ebdf807aa91f177e178949fd2e6051ead62c93c1895d842c69f77a93cb6caff2",
+    "file_sha256": [
+      "dddac90779620a9721cfd5a8f5cf1c1aded09857361fdb7638157d71f96ecc88"
+    ],
+    "name": "부루마불2009",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "0002AF2F",
+    "pid": "PD129840",
+    "version": "01.00.06",
+    "vendor": "(주)엠앤엠게임즈"
+  },
+  "cheats": [
+    {
+      "id": "skip-first-run-authentication",
+      "name": "Skip first-run authentication",
+      "description": "Starts the local game without waiting for its retired LGT first-run authentication service.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/17",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x0002a7c4",
+          "value": "02207047",
+          "expected": "10b581b0",
+          "note": "return 2 from the local initconfirm.dat counter read so startup takes the already-authenticated path to state 0x1d instead of entering the server authentication screen"
+        }
+      ]
+    }
+  ]
+}

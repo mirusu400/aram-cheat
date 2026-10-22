@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "72c19518cca7768404963894b65708719e148e27a5a3375ed20cb0fbff70117b",
+    "file_sha256": [
+      "39f0cea37ef4e2682aee2fc4218fe177a5cd9ba67c51c8ab74d4b25d6ceab462"
+    ],
+    "name": "이노티아 연대기 2",
+    "carrier": "ktf",
+    "format": "ktf-wipi",
+    "profile_id": "wipi-1.2.1/ktf/generic",
+    "aid": "010408F5",
+    "pid": "PD007974",
+    "version": "01.00.01",
+    "vendor": "(주)컴투스"
+  },
+  "cheats": [
+    {
+      "id": "skip-com2us-authentication",
+      "name": "Skip Com2uS authentication",
+      "description": "Starts the local game past the handset-bound Com2uS certificate check that otherwise displays authentication error 1001 and exits.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-cheat/issues/18",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00176956",
+          "value": "14e0c046",
+          "expected": "b4f719fb",
+          "note": "branch the certificate-verification state directly to its success continuation at 0x00176982, preserving the normal startup initialization"
+        }
+      ]
+    }
+  ]
+}

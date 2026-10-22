@@ -227,6 +227,23 @@
       ]
     },
     {
+      "image_sha256": "72c19518cca7768404963894b65708719e148e27a5a3375ed20cb0fbff70117b",
+      "name": "이노티아 연대기 2",
+      "carrier": "ktf",
+      "format": "ktf-wipi",
+      "aid": "010408F5",
+      "pid": "PD007974",
+      "version": "01.00.01",
+      "vendor": "(주)컴투스",
+      "file_sha256": [
+        "39f0cea37ef4e2682aee2fc4218fe177a5cd9ba67c51c8ab74d4b25d6ceab462"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-com2us-authentication"
+      ]
+    },
+    {
       "image_sha256": "73f667b7d240634bb9139c53c423e4f3d83c1abd53688c31f95a84837b3e12b5",
       "name": "레이카르나",
       "carrier": "lgt",
@@ -389,6 +406,23 @@
       "vendor": "넥슨모바일",
       "file_sha256": [
         "7f2c396bced5abba51e93cd1509eb06102ba9fec33d8ec96f79258c2ee3b039c"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "skip-first-run-authentication"
+      ]
+    },
+    {
+      "image_sha256": "ebdf807aa91f177e178949fd2e6051ead62c93c1895d842c69f77a93cb6caff2",
+      "name": "부루마불2009",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "0002AF2F",
+      "pid": "PD129840",
+      "version": "01.00.06",
+      "vendor": "(주)엠앤엠게임즈",
+      "file_sha256": [
+        "dddac90779620a9721cfd5a8f5cf1c1aded09857361fdb7638157d71f96ecc88"
       ],
       "cheats": 1,
       "default_enabled": [
