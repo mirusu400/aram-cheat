@@ -1,0 +1,55 @@
+{
+  "version": 3,
+  "title": {
+    "image_sha256": "08a684c7732f5524b7d9a1e9edb9ffc4705c8caf7aba8ae1ebba4a43784bfa15",
+    "file_sha256": [
+      "ef91e2719786cc31cdbfeec59fb5419f26ad39e7c36be23bffd2fbf132715f8d"
+    ],
+    "name": "영웅서기5-칠흑의계약",
+    "carrier": "lgt",
+    "format": "raptor-wipi-c",
+    "profile_id": "wipi-1.2.1/lgt/raptor",
+    "aid": "00032870",
+    "pid": "PD151088",
+    "version": "01.00.01",
+    "vendor": "일렉트로닉아츠코리아(유)"
+  },
+  "cheats": [
+    {
+      "id": "offline-local-start",
+      "name": "Start locally without retired server checks",
+      "description": "Starts a local game without the retired LGT handset-state, consent, and server-save checks. Online server saves remain unavailable.",
+      "category": "bypass",
+      "author": "aram",
+      "reference": "https://github.com/mirusu400/aram-core/issues/544",
+      "restore_on_disable": true,
+      "default_enabled": true,
+      "patches": [
+        {
+          "address": "0x00071394",
+          "value": "00207047",
+          "expected": "00b581b0",
+          "note": "return an available handset state instead of rejecting airplane-mode, DS-lock, or roaming status"
+        },
+        {
+          "address": "0x0004e49c",
+          "value": "0321",
+          "expected": "0221",
+          "note": "continue from first-run setup without opening the retired MIDAS privacy-consent request"
+        },
+        {
+          "address": "0x00050066",
+          "value": "0621",
+          "expected": "0121",
+          "note": "select the game's existing no-server-save result for the initial title-screen check"
+        },
+        {
+          "address": "0x0005015c",
+          "value": "51340800",
+          "expected": "29330800",
+          "note": "run the existing result handler locally instead of starting the retired server-save request"
+        }
+      ]
+    }
+  ]
+}

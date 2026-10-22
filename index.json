@@ -19,6 +19,23 @@
       ]
     },
     {
+      "image_sha256": "08a684c7732f5524b7d9a1e9edb9ffc4705c8caf7aba8ae1ebba4a43784bfa15",
+      "name": "영웅서기5-칠흑의계약",
+      "carrier": "lgt",
+      "format": "raptor-wipi-c",
+      "aid": "00032870",
+      "pid": "PD151088",
+      "version": "01.00.01",
+      "vendor": "일렉트로닉아츠코리아(유)",
+      "file_sha256": [
+        "ef91e2719786cc31cdbfeec59fb5419f26ad39e7c36be23bffd2fbf132715f8d"
+      ],
+      "cheats": 1,
+      "default_enabled": [
+        "offline-local-start"
+      ]
+    },
+    {
       "image_sha256": "08ba31acfba9c844121d8f5d5fa4d018f52b058e0a351cbe96f69ebe426a4ec1",
       "name": "슈퍼액션히어로3",
       "carrier": "lgt",
